@@ -5,13 +5,13 @@ const validcardNumberRegex = RegExp(
     /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/
 );
 const validMonthRegex = RegExp(
-    /0[1-9]|1[0-2]/
+    /^(0[1-9]{1}|1[0-2]{1})$/
 );
 const validYearRegex = RegExp(
-    /^(0?[1-9]|[1-9][0-9])$/
+    /^(0?[0-9]|[1-9][0-9])$/
 );
 const validCVCRegex = RegExp(
-    /^[0-9]{3,4}$/
+    /^[0-9]{3}$/
 );
 
 const validateForm = (errors: any) => {

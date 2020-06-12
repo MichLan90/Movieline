@@ -11,6 +11,7 @@ interface State {
     isSwishSelected: boolean
     isPaypalSelected: boolean
     forms: []
+    showMenu: boolean
 }
 
 interface Props {
@@ -24,20 +25,24 @@ export default class Payment extends React.Component<Props, State> {
             isVisaSelected: false,
             isSwishSelected: false,
             isPaypalSelected: false,
-            forms: []
+            forms: [],
+            showMenu: true
         }
     }
 
     visaHandleClick = () => {
         this.setState({ isVisaSelected: true, isSwishSelected: false, isPaypalSelected: false })
+        this.setState({showMenu: false})
     }
 
     swishHandleClick = () => {
         this.setState({ isSwishSelected: true, isVisaSelected: false, isPaypalSelected: false })
+        this.setState({showMenu: false})
     }
 
     paypalHandleClick = () => {
         this.setState({ isPaypalSelected: true, isVisaSelected: false, isSwishSelected: false })
+        this.setState({showMenu: false})
     }
 
     form = (form: any) => {
@@ -54,15 +59,19 @@ export default class Payment extends React.Component<Props, State> {
         return (
             <div>
                 <h2>Payment</h2>
-                <Menu id="menu">
-                    <h4>Choose your payment method</h4>
-                    <MenuItem text="Show alternatives..." shouldDismissPopover={true}>
-                            
-                        <MenuItem text="Visa Card" onClick={this.visaHandleClick} />
-                        <MenuItem text="Swish" onClick={this.swishHandleClick} />
-                        <MenuItem text="PayPal" onClick={this.paypalHandleClick} />
-                    </MenuItem>
-                </Menu>
+                {
+                    this.state.showMenu?
+                    <Menu id="menu">
+                        <h4>Choose your payment method</h4>
+                        <MenuItem text="Show alternatives..." shouldDismissPopover={true}>
+
+                            <MenuItem text="Visa Card" onClick={this.visaHandleClick} />
+                            <MenuItem text="Swish" onClick={this.swishHandleClick} />
+                            <MenuItem text="PayPal" onClick={this.paypalHandleClick} />
+                        </MenuItem>
+                    </Menu>
+                    :null
+                }
                 <div>
                     {this.state.isVisaSelected && <VisaForm form={this.form} />}
                     {this.state.isSwishSelected && <SwishForm form={this.form} />}

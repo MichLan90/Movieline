@@ -16,6 +16,7 @@ export default class PaymentItem extends React.Component<Props, State> {
         return (
             <div style={{ marginBottom: "1em", display: "flex", flexDirection: "column" }}>
                 <h4 style={text}>Ditt betalningsalternativ har godkänts.</h4>
+                <h4 style={text} >{this.props.form.title}</h4>
                 <h3 style={text}>{this.props.form.mobilePhone}</h3>
                 <p style={text}>{this.props.form.email}</p>
             </div>

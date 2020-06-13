@@ -12,6 +12,8 @@ const validateForm = (errors: any) => {
 }
 
 interface State {
+    title: string
+    showSwishForm: boolean
     mobilePhone: number
     errors: {
         mobilePhone: any
@@ -26,6 +28,8 @@ export default class SwishForm extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
+            title: "Swish",
+            showSwishForm: true,
             mobilePhone: parseInt(""),
             errors: {
                 mobilePhone: ""
@@ -53,9 +57,11 @@ export default class SwishForm extends React.Component<Props, State> {
             alert('You are valid! Open your BankID application.')
 
             const printSwishForm = {
+                title: this.state.title,
                 mobilePhone: this.state.mobilePhone
             }
             this.props.form(printSwishForm)
+            this.setState({showSwishForm: false})
         } else {
             console.error('Invalid Form')
         }
@@ -65,15 +71,21 @@ export default class SwishForm extends React.Component<Props, State> {
         const { errors } = this.state
         return (
             <div>
-                <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
-                    <label htmlFor="mobilePhone">Mobile:
+                {
+                    this.state.showSwishForm ?
+                        <div>
+                            <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
+                                <label htmlFor="mobilePhone">Mobile:
                         <input name="mobilePhone" type="mobilePhone" onChange={this.handleChange} placeholder="mobilnummer" autoComplete="on" />
-                        {errors.mobilePhone.length > 0 &&
-                            <span style={{ color: 'red' }}>{errors.mobilePhone}</span>}
-                    </label>
-                    <Button type="submit" value="submit" style={buttonStyle}>Submit</Button>
-                </form>
+                                    {errors.mobilePhone.length > 0 &&
+                                        <span style={{ color: 'red' }}>{errors.mobilePhone}</span>}
+                                </label>
+                                <Button type="submit" value="submit" style={buttonStyle}>Submit</Button>
+                            </form>
 
+                        </div>
+                        : null
+                }
                 <img style={{ maxWidth: '75%' }}
                     src={require("./assets/swish.png")} alt="Swish" />
             </div>

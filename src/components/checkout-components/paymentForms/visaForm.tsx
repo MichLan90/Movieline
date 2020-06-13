@@ -21,14 +21,16 @@ const validateForm = (errors: any) => {
 }
 
 interface State {
+    showVisaForm: boolean
+    title: string
     cardNumber: number
-    month: number,
-    year: number,
+    month: number
+    year: number
     cvv: number
     errors: {
         cardNumber: any
-        month: any,
-        year: any,
+        month: any
+        year: any
         cvv: any
     }
 }
@@ -42,6 +44,8 @@ export default class VisaForm extends React.Component<Props, State> {
         super(props)
 
         this.state = {
+            title: "VISA",
+            showVisaForm: true,
             cardNumber: parseInt(""),
             month: parseInt(""),
             year: parseInt(""),
@@ -100,6 +104,7 @@ export default class VisaForm extends React.Component<Props, State> {
             console.info('Valid Form')
             alert('You are valid!')
             const printVisaForm = {
+                title: this.state.title,
                 cardNumber: this.state.cardNumber,
                 month: this.state.month,
                 year: this.state.year,
@@ -107,7 +112,7 @@ export default class VisaForm extends React.Component<Props, State> {
             }
 
             this.props.form(printVisaForm)
-
+            this.setState({ showVisaForm: false })
         } else {
             console.error('Invalid Form')
         }
@@ -117,30 +122,36 @@ export default class VisaForm extends React.Component<Props, State> {
         const { errors } = this.state
         return (
             <div>
-                <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
-                    <label htmlFor="cardNumber">cardNumber:
+                {
+                    this.state.showVisaForm ?
+                        <div>
+                            <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
+                                <label htmlFor="cardNumber">cardNumber:
                         <input name="cardNumber" type="cardNumber" onChange={this.handleChange} placeholder=" your cardnumber" autoComplete="on" />
-                        {errors.cardNumber.length > 0 &&
-                            <span style={{ color: 'red' }}>{errors.cardNumber}</span>}
-                    </label>
-                    <label htmlFor="month">Month:
+                                    {errors.cardNumber.length > 0 &&
+                                        <span style={{ color: 'red' }}>{errors.cardNumber}</span>}
+                                </label>
+                                <label htmlFor="month">Month:
                         <input name="month" type="text" onChange={this.handleChange} placeholder="01" autoComplete="on" />
-                        {errors.month.length > 0 &&
-                            <span style={{ color: 'red' }}>{errors.month}</span>}
-                    </label>
-                    <label htmlFor="year">Year:
+                                    {errors.month.length > 0 &&
+                                        <span style={{ color: 'red' }}>{errors.month}</span>}
+                                </label>
+                                <label htmlFor="year">Year:
                         <input name="year" type="year" onChange={this.handleChange} placeholder="20" autoComplete="on" />
-                        {errors.year.length > 0 &&
-                            <span style={{ color: 'red' }}>{errors.year}</span>}
-                    </label>
-                    <label htmlFor="cvv">CVV:
+                                    {errors.year.length > 0 &&
+                                        <span style={{ color: 'red' }}>{errors.year}</span>}
+                                </label>
+                                <label htmlFor="cvv">CVV:
                         <input name="cvv" type="cvv" onChange={this.handleChange} placeholder="cvv" autoComplete="on" />
-                        {errors.cvv.length > 0 &&
-                            <span style={{ color: 'red' }}>{errors.cvv}</span>}
-                    </label>
-                    <Button type="submit" value="submit" style={buttonStyle}>Submit</Button>
-                </form>
+                                    {errors.cvv.length > 0 &&
+                                        <span style={{ color: 'red' }}>{errors.cvv}</span>}
+                                </label>
+                                <Button type="submit" value="submit" style={buttonStyle}>Submit</Button>
+                            </form>
 
+                        </div>
+                        : null
+                }
                 <img style={{ maxWidth: '75%' }}
                     src={require("./assets/visa.png")} alt="Visa" />
             </div>

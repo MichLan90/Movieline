@@ -5,6 +5,7 @@ import { CartConsumer, ContextState } from '../context/cartContext'
 import InfoForm from './checkout-components/FormInfo'
 import DeliveryMethod, { Delivery, deliveryAlternatives } from '../components/checkout-components/Delivery'
 import Payment from './checkout-components/Payment'
+import Order from './checkout-components/Order'
 
 
 interface Params {
@@ -83,7 +84,7 @@ export default class CheckoutView extends React.Component<Props, State> {
                             <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>
                                 <b>Total price including sales tax and shipping: {contextData.getTotalPrice() + this.state.selectedDelivery.price} SEK</b>
                                 <div id="price-inkl"></div>
-                                <Button onClick={confirmOrder}>Confirm your order</Button>
+                                <Order />
                             </div>
                         </div>
                     )
@@ -93,11 +94,11 @@ export default class CheckoutView extends React.Component<Props, State> {
     }
 };
 
-function confirmOrder() {
+/* function confirmOrder() {
     if (window.confirm('Are you sure you are done?')) {
         window.location.reload(true);
     }
-}
+} */
 
 const checkoutStyle: React.CSSProperties = {
     display: "flex",

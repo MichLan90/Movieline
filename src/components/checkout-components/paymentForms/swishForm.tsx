@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "@blueprintjs/core";
+import Order from '../Order'
 
 const validMobileRegex = RegExp(
     /^(\+\d{1,3}[- ]?)?\d{10}$/
@@ -22,6 +23,8 @@ interface State {
 
 interface Props {
     form: (form: any) => void
+    showVisaForm: boolean
+    showPaypalForm: boolean
 }
 
 export default class SwishForm extends React.Component<Props, State> {
@@ -61,7 +64,7 @@ export default class SwishForm extends React.Component<Props, State> {
                 mobilePhone: this.state.mobilePhone
             }
             this.props.form(printSwishForm)
-            this.setState({showSwishForm: false})
+            this.setState({ showSwishForm: false })
         } else {
             console.error('Invalid Form')
         }
@@ -86,8 +89,11 @@ export default class SwishForm extends React.Component<Props, State> {
                         </div>
                         : null
                 }
-                <img style={{ maxWidth: '75%' }}
+                <img style={{ maxWidth: '75%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/swish.png")} alt="Swish" />
+                <div>
+                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.state.showSwishForm} showPaypalForm={this.props.showPaypalForm} />
+                </div>
             </div>
         )
     }

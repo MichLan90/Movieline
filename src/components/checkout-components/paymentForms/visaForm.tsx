@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "@blueprintjs/core";
+import Order from '../Order'
 
 const validcardNumberRegex = RegExp(
     /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/
@@ -37,6 +38,8 @@ interface State {
 
 interface Props {
     form: (form: any) => void
+    showSwishForm: boolean
+    showPaypalForm: boolean
 }
 
 export default class VisaForm extends React.Component<Props, State> {
@@ -152,8 +155,11 @@ export default class VisaForm extends React.Component<Props, State> {
                         </div>
                         : null
                 }
-                <img style={{ maxWidth: '75%' }}
+                <img style={{ maxWidth: '75%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/visa.png")} alt="Visa" />
+                <div>
+                    <Order showVisaForm={this.state.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} />
+                </div>
             </div>
         )
     }

@@ -17,7 +17,9 @@ interface State {
 }
 
 interface Props extends RouteComponentProps<Params> {
-    form: (form: any) => void
+    showVisaForm: boolean
+    showSwishForm: boolean
+    showPaypalForm: boolean
  }
 
 export default class CheckoutView extends React.Component<Props, State> {
@@ -78,13 +80,13 @@ export default class CheckoutView extends React.Component<Props, State> {
                             </div>
 
                             <div style={cardStyle}>
-                            <Payment form={this.props.form} />
+                            <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm}  />
                                 <br />
                             </div>
                             <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>
                                 <b>Total price including sales tax and shipping: {contextData.getTotalPrice() + this.state.selectedDelivery.price} SEK</b>
                                 <div id="price-inkl"></div>
-                                <Order />
+                                
                             </div>
                         </div>
                     )

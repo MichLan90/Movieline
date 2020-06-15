@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "@blueprintjs/core";
+import Order from '../Order'
 
 const validEmailRegex = RegExp(
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -28,6 +29,8 @@ interface State {
 
 interface Props {
     form: (form: any) => void
+    showVisaForm: boolean
+    showSwishForm: boolean
 }
 
 export default class PaypalForm extends React.Component<Props, State> {
@@ -113,8 +116,11 @@ export default class PaypalForm extends React.Component<Props, State> {
                         </div>
                         : null
                 }
-                <a href="https://www.paypal.com/se/signin"><img style={{ maxWidth: '50%' }}
+                <a href="https://www.paypal.com/se/signin"><img style={{ maxWidth: '50%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/paypal.png")} alt="Paypal" /></a>
+                <div>
+                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.state.showPaypalForm} />
+                </div>
             </div>
         )
     }

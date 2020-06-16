@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { Button, Card, Label, MenuItem, Menu, FormGroup, InputGroup, RadioGroup, Radio, Checkbox } from "@blueprintjs/core"
 import { CartConsumer, ContextState } from '../context/cartContext'
 import InfoForm from './checkout-components/FormInfo'
 import DeliveryMethod, { Delivery, deliveryAlternatives } from '../components/checkout-components/Delivery'
 import Payment from './checkout-components/Payment'
-import Order from './checkout-components/Order'
 
 interface Params {
     checkout: string
@@ -24,7 +22,6 @@ interface Props extends RouteComponentProps<Params> {
 }
 
 export default class CheckoutView extends React.Component<Props, State> {
-
 
     constructor(props: Props) {
         super(props)
@@ -89,10 +86,13 @@ export default class CheckoutView extends React.Component<Props, State> {
                                 <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.state.info} />
                                 <br />
                             </div>
-                            <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>
-                                <b>Total price including sales tax and shipping: {contextData.getTotalPrice() + this.state.selectedDelivery.price} SEK</b>
-                                <div id="price-inkl"></div>
-
+                            <div id="contain-all" style={{ textAlign: 'left', minWidth: '100%', padding: '2%', display: "flex", flexDirection: "column" }}>
+                                <b>Shipping: {this.state.selectedDelivery.price} SEK</b>
+                                <br />
+                                <b>VAT 25%: {contextData.getVAT()} SEK</b>
+                                <br />
+                                <b>Total incl. VAT: {contextData.getTotalPrice() + this.state.selectedDelivery.price} SEK</b>
+                                {/* <div id="price-inkl"></div> */}
                             </div>
                         </div>
                     )
@@ -102,12 +102,6 @@ export default class CheckoutView extends React.Component<Props, State> {
     }
 };
 
-/* function confirmOrder() {
-    if (window.confirm('Are you sure you are done?')) {
-        window.location.reload(true);
-    }
-} */
-
 const checkoutStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: 'row',
@@ -115,7 +109,6 @@ const checkoutStyle: React.CSSProperties = {
     justifyContent: "center",
 
 }
-
 
 export const cardStyle: React.CSSProperties = {
     maxWidth: "60%",

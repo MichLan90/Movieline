@@ -22,10 +22,9 @@ export default class Order extends React.Component<Props, State> {
 
     confirmOrderHandler = () => {
         if (!this.props.showVisaForm && !this.props.showSwishForm && !this.props.showPaypalForm && this.props.showInfo) {
-            console.log(this.props.showVisaForm, this.props.showSwishForm, this.props.showPaypalForm, this.props.showInfo)
             this.setState({ showOrderConfirm: true })
         } else {
-            alert('You have to fill in all input to confirm!')
+            alert('You have to fill in all inputs to confirm!')
         }
     }
 
@@ -36,7 +35,7 @@ export default class Order extends React.Component<Props, State> {
                 {
                     this.state.showOrderConfirm ?
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <h3 style={text}>Din order är klar!</h3>
+                            <h3 style={text}>Your order is completed!</h3>
                         </div>
                         : null
                 }

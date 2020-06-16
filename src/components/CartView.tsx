@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { CartConsumer, ContextState } from '../context/cartContext'
-import { Button, Spinner } from '@blueprintjs/core'
+import { Button } from '@blueprintjs/core'
 
 interface Params {
     cart: string
@@ -10,10 +10,9 @@ interface Params {
 
 interface Props extends RouteComponentProps<Params> { }
 
-// Kundvagnsida- Cartpage
 function CartView(props: Props) {
     const cart = props.match.params.cart
-   // const [price, setPrice] = useState(0);
+    
     return (
         <CartConsumer>
             {(contextData: ContextState) => {

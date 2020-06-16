@@ -9,21 +9,21 @@ interface Props {
 
 export default class InfoOrder extends React.Component<Props, State> {
 
-    get orderList() {
+    get infoList() {
         if (this.props.forms.length) {
             return this.props.forms.map((form: any) => {
                 return <InfoItem key={form} form={form} />
             })
         } else {
-            return <h4 style={{ color: "red" }}>Fyll i din info.</h4>
+            return <h4 style={{ color: "red" }}>Fill your info.</h4>
         }
     }
 
     render() {
         return (
             <div style={{ textAlign: "center" }}>
-                <h3>Order mottagen:</h3>
-                {this.orderList}
+                <h3>Received order by:</h3>
+                {this.infoList}
             </div>
         )
     }

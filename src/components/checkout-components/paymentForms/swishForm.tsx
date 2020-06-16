@@ -15,6 +15,7 @@ const validateForm = (errors: any) => {
 interface State {
     title: string
     showSwishForm: boolean
+
     mobilePhone: number
     errors: {
         mobilePhone: any
@@ -34,7 +35,9 @@ export default class SwishForm extends React.Component<Props, State> {
         this.state = {
             title: "Swish",
             showSwishForm: true,
+
             mobilePhone: parseInt(""),
+
             errors: {
                 mobilePhone: ""
             }
@@ -57,8 +60,7 @@ export default class SwishForm extends React.Component<Props, State> {
     handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (validateForm(this.state.errors) && this.state.mobilePhone && this.props.showInfo) {
-            console.log(this.props.showInfo)
-            console.info('Valid Form')
+
             alert('You are valid! Open your BankID application.')
 
             const printSwishForm = {
@@ -66,8 +68,10 @@ export default class SwishForm extends React.Component<Props, State> {
                 mobilePhone: this.state.mobilePhone
             }
             this.props.form(printSwishForm)
+
             this.setState({ showSwishForm: false })
         } else {
+            alert("You have to fill in all inputs to confirm!")
             console.error('Invalid Form')
         }
     }
@@ -81,7 +85,7 @@ export default class SwishForm extends React.Component<Props, State> {
                         <div>
                             <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
                                 <label htmlFor="mobilePhone">Mobile:
-                        <input name="mobilePhone" type="mobilePhone" onChange={this.handleChange} placeholder="mobilnummer" autoComplete="on" />
+                        <input name="mobilePhone" type="mobilePhone" onChange={this.handleChange} placeholder="mobilephone" autoComplete="on" />
                                     {errors.mobilePhone.length > 0 &&
                                         <span style={{ color: 'red' }}>{errors.mobilePhone}</span>}
                                 </label>

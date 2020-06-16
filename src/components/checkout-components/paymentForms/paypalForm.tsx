@@ -19,8 +19,10 @@ const validateForm = (errors: any) => {
 interface State {
     title: string
     showPaypalForm: boolean
+
     email: string
     mobilePhone: number;
+
     errors: {
         email: string,
         mobilePhone: any
@@ -40,8 +42,10 @@ export default class PaypalForm extends React.Component<Props, State> {
         this.state = {
             title: "Paypal",
             showPaypalForm: true,
+
             email: "",
             mobilePhone: parseInt(""),
+
             errors: {
                 email: "",
                 mobilePhone: ""
@@ -78,8 +82,8 @@ export default class PaypalForm extends React.Component<Props, State> {
 
     handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (validateForm(this.state.errors) && this.state.email !== "" && this.state.mobilePhone) {
-            console.info('Valid Form')
+        if (validateForm(this.state.errors) && this.state.email && this.state.mobilePhone && this.props.showInfo) {
+
             alert('You are valid! Check your mailbox.')
 
             const printPaypalForm = {
@@ -88,8 +92,10 @@ export default class PaypalForm extends React.Component<Props, State> {
                 mobilePhone: this.state.mobilePhone
             }
             this.props.form(printPaypalForm)
+
             this.setState({ showPaypalForm: false })
         } else {
+            alert("You have to fill in all inputs to confirm!")
             console.error('Invalid Form')
         }
     }
@@ -103,12 +109,12 @@ export default class PaypalForm extends React.Component<Props, State> {
                         <div>
                             <form style={{ display: 'flex', flexDirection: 'column', width: '20%' }} onSubmit={this.handleSubmit} >
                                 <label htmlFor='email'>Email:
-                    <input name="email" type="email" onChange={this.handleChange} value={this.state.email} placeholder="you@example.com" autoComplete="on" />
+                    <input name="email" type="email" onChange={this.handleChange} placeholder="you@example.com" autoComplete="on" />
                                     {errors.email.length > 0 &&
                                         <span style={{ color: 'red' }}>{errors.email}</span>}
                                 </label>
                                 <label htmlFor="mobilePhone">Mobile:
-                    <input name="mobilePhone" type="mobilePhone" onChange={this.handleChange} placeholder="mobilnummer" autoComplete="on" />
+                    <input name="mobilePhone" type="mobilePhone" onChange={this.handleChange} placeholder="mobilephone" autoComplete="on" />
                                     {errors.mobilePhone.length > 0 &&
                                         <span style={{ color: 'red' }}>{errors.mobilePhone}</span>}
                                 </label>

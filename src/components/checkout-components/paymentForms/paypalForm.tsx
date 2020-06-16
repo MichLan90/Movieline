@@ -31,6 +31,7 @@ interface Props {
     form: (form: any) => void
     showVisaForm: boolean
     showSwishForm: boolean
+    showInfo: boolean
 }
 
 export default class PaypalForm extends React.Component<Props, State> {
@@ -77,7 +78,7 @@ export default class PaypalForm extends React.Component<Props, State> {
 
     handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (validateForm(this.state.errors) && this.state.email != "" && this.state.mobilePhone) {
+        if (validateForm(this.state.errors) && this.state.email !== "" && this.state.mobilePhone) {
             console.info('Valid Form')
             alert('You are valid! Check your mailbox.')
 
@@ -119,7 +120,7 @@ export default class PaypalForm extends React.Component<Props, State> {
                 <a href="https://www.paypal.com/se/signin"><img style={{ maxWidth: '50%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/paypal.png")} alt="Paypal" /></a>
                 <div>
-                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.state.showPaypalForm} />
+                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.state.showPaypalForm} showInfo={this.props.showInfo}/>
                 </div>
             </div>
         )

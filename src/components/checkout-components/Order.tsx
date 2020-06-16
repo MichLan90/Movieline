@@ -9,6 +9,7 @@ interface Props {
     showVisaForm: boolean
     showSwishForm: boolean
     showPaypalForm: boolean
+    showInfo: boolean
 }
 
 export default class Order extends React.Component<Props, State> {
@@ -20,9 +21,8 @@ export default class Order extends React.Component<Props, State> {
     }
 
     confirmOrderHandler = () => {
-
         if (!this.props.showVisaForm && !this.props.showSwishForm && !this.props.showPaypalForm) {
-            console.log(this.props.showVisaForm, this.props.showSwishForm, this.props.showPaypalForm)
+            console.log(this.props.showVisaForm, this.props.showSwishForm, this.props.showPaypalForm, this.props.showInfo)
             this.setState({ showOrderConfirm: true })
         } else {
             alert('You have to fill input to confirm!')

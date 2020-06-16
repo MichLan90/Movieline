@@ -40,6 +40,7 @@ interface Props {
     form: (form: any) => void
     showSwishForm: boolean
     showPaypalForm: boolean
+    showInfo: boolean
 }
 
 export default class VisaForm extends React.Component<Props, State> {
@@ -158,7 +159,7 @@ export default class VisaForm extends React.Component<Props, State> {
                 <img style={{ maxWidth: '75%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/visa.png")} alt="Visa" />
                 <div>
-                    <Order showVisaForm={this.state.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} />
+                    <Order showVisaForm={this.state.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.props.showInfo} />
                 </div>
             </div>
         )

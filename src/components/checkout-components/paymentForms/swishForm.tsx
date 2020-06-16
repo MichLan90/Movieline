@@ -25,6 +25,7 @@ interface Props {
     form: (form: any) => void
     showVisaForm: boolean
     showPaypalForm: boolean
+    showInfo: boolean
 }
 
 export default class SwishForm extends React.Component<Props, State> {
@@ -56,6 +57,7 @@ export default class SwishForm extends React.Component<Props, State> {
     handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (validateForm(this.state.errors) && this.state.mobilePhone) {
+            console.log(this.props.showInfo)
             console.info('Valid Form')
             alert('You are valid! Open your BankID application.')
 
@@ -92,7 +94,7 @@ export default class SwishForm extends React.Component<Props, State> {
                 <img style={{ maxWidth: '75%', display: "flex", justifyContent: "center", margin: "auto" }}
                     src={require("./assets/swish.png")} alt="Swish" />
                 <div>
-                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.state.showSwishForm} showPaypalForm={this.props.showPaypalForm} />
+                    <Order showVisaForm={this.props.showVisaForm} showSwishForm={this.state.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.props.showInfo}/>
                 </div>
             </div>
         )

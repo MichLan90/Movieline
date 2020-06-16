@@ -26,7 +26,7 @@ function DetailView(props: Props) {
                         <div key={product.id} style={productCards}>
                             <h1 style={TitleLink}>{product.title}</h1>
                             <p>{product.fullDescription}</p>
-                            <img src={require("./../assets/" + product.img)} style={poster} className='movieImg' />
+                            <img src={require("./../assets/" + product.img)} style={poster} className='movieImg' alt="Pic" />
                             <h3>Köp: {product.price} SEK</h3>
                             <CartConsumer>
                                 {(contextData: ContextState) => {

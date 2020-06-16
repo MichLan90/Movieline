@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react'
-import Payment from '../Payment'
 
 interface State { }
 
@@ -8,9 +7,6 @@ interface Props {
 }
 
 export default class PaymentItem extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props)
-    }
 
     render() {
         return (

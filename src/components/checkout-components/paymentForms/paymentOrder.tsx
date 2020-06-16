@@ -8,9 +8,6 @@ interface Props {
 }
 
 export default class PaymentOrder extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props)
-    }
 
     get orderList() {
         if (this.props.forms.length) {

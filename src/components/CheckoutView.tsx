@@ -7,13 +7,13 @@ import DeliveryMethod, { Delivery, deliveryAlternatives } from '../components/ch
 import Payment from './checkout-components/Payment'
 import Order from './checkout-components/Order'
 
-
 interface Params {
     checkout: string
 }
 
 interface State {
     selectedDelivery: Delivery
+    showInfo: boolean
 }
 
 interface Props extends RouteComponentProps<Params> {
@@ -28,8 +28,13 @@ export default class CheckoutView extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
-            selectedDelivery: deliveryAlternatives[0]
+            selectedDelivery: deliveryAlternatives[0],
+            showInfo: false
         }
+    }
+
+    handleSubmit = () => {
+        this.setState({showInfo: true})
     }
 
     render() {
@@ -68,7 +73,7 @@ export default class CheckoutView extends React.Component<Props, State> {
                                 <h2>Your Info</h2>
                                 <div style={{ fontSize: '12px' }}>Fields with * must be filled.</div>
                                 <br />
-                                <InfoForm></InfoForm>
+                                <InfoForm handleSubmit={this.handleSubmit}></InfoForm>
                             </div>
 
                             <div style={cardStyle}>
@@ -80,7 +85,7 @@ export default class CheckoutView extends React.Component<Props, State> {
                             </div>
 
                             <div style={cardStyle}>
-                            <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm}  />
+                            <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.state.showInfo} />
                                 <br />
                             </div>
                             <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>

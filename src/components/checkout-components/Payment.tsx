@@ -17,6 +17,7 @@ interface Props {
     showVisaForm: boolean
     showSwishForm: boolean
     showPaypalForm: boolean
+    showInfo: boolean
 }
 
 export default class Payment extends React.Component<Props, State> {
@@ -74,9 +75,9 @@ export default class Payment extends React.Component<Props, State> {
                         : null
                 }
                 <div>
-                    {this.state.isVisaSelected && <VisaForm form={this.form} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} />}
-                    {this.state.isSwishSelected && <SwishForm form={this.form} showVisaForm={this.props.showVisaForm} showPaypalForm={this.props.showPaypalForm} />}
-                    {this.state.isPaypalSelected && <PaypalForm form={this.form} showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} />}
+                    {this.state.isVisaSelected && <VisaForm form={this.form} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.props.showInfo} />}
+                    {this.state.isSwishSelected && <SwishForm form={this.form} showVisaForm={this.props.showVisaForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.props.showInfo} />}
+                    {this.state.isPaypalSelected && <PaypalForm form={this.form} showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showInfo={this.props.showInfo} />}
                 </div>
                 <div>
                     <PaymentOrder forms={this.state.forms} />

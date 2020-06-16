@@ -31,7 +31,7 @@ interface Props {
     form: (form: any) => void
     showVisaForm: boolean
     showSwishForm: boolean
-    showInfo: boolean
+    showInfo: any
 }
 
 export default class PaypalForm extends React.Component<Props, State> {

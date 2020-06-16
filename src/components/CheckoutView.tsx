@@ -13,14 +13,15 @@ interface Params {
 
 interface State {
     selectedDelivery: Delivery
-    showInfo: boolean
+    info: boolean
 }
 
 interface Props extends RouteComponentProps<Params> {
     showVisaForm: boolean
     showSwishForm: boolean
     showPaypalForm: boolean
- }
+    showInfo: any
+}
 
 export default class CheckoutView extends React.Component<Props, State> {
 
@@ -29,12 +30,14 @@ export default class CheckoutView extends React.Component<Props, State> {
         super(props)
         this.state = {
             selectedDelivery: deliveryAlternatives[0],
-            showInfo: false
+            info: false
         }
     }
 
-    handleSubmit = () => {
-        this.setState({showInfo: true})
+    showInfo = (info: any) => {
+        this.setState({ info: info }, () => {
+            console.log(this.state.info)
+        })
     }
 
     render() {
@@ -71,9 +74,7 @@ export default class CheckoutView extends React.Component<Props, State> {
 
                             <div style={cardStyle} id="msg">
                                 <h2>Your Info</h2>
-                                <div style={{ fontSize: '12px' }}>Fields with * must be filled.</div>
-                                <br />
-                                <InfoForm handleSubmit={this.handleSubmit}></InfoForm>
+                                <InfoForm showInfo={this.showInfo} ></InfoForm>
                             </div>
 
                             <div style={cardStyle}>
@@ -85,13 +86,13 @@ export default class CheckoutView extends React.Component<Props, State> {
                             </div>
 
                             <div style={cardStyle}>
-                            <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.state.showInfo} />
+                                <Payment showVisaForm={this.props.showVisaForm} showSwishForm={this.props.showSwishForm} showPaypalForm={this.props.showPaypalForm} showInfo={this.state.info} />
                                 <br />
                             </div>
                             <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>
                                 <b>Total price including sales tax and shipping: {contextData.getTotalPrice() + this.state.selectedDelivery.price} SEK</b>
                                 <div id="price-inkl"></div>
-                                
+
                             </div>
                         </div>
                     )

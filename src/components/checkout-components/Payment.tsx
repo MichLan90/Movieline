@@ -17,7 +17,7 @@ interface Props {
     showVisaForm: boolean
     showSwishForm: boolean
     showPaypalForm: boolean
-    showInfo: boolean
+    showInfo: any
 }
 
 export default class Payment extends React.Component<Props, State> {

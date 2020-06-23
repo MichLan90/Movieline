@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Button, Card, Label, MenuItem, Menu, FormGroup, InputGroup, RadioGroup, Radio, Checkbox } from "@blueprintjs/core"
-import { CartConsumer, ContextState } from '../context/cartContext'
+import { CartConsumer, CartContextState } from '../context/cartContext'
+import { CheckOutConsumer, CheckOutContextState } from '../context/checkOutContext'
 import InfoForm from './checkout-components/FormInfo'
 import DeliveryMethod, { Delivery, deliveryAlternatives } from '../components/checkout-components/Delivery'
 import Payment from './checkout-components/Payment'
@@ -17,7 +18,7 @@ interface State {
 
 interface Props extends RouteComponentProps<Params> {
     form: (form: any) => void
- }
+}
 
 export default class CheckoutView extends React.Component<Props, State> {
 
@@ -32,7 +33,7 @@ export default class CheckoutView extends React.Component<Props, State> {
     render() {
         return (
             <CartConsumer>
-                {(contextData: ContextState) => {
+                {(contextData: CartContextState) => {
                     let totalPrice = 0;
                     let pricePerItem = 0;
                     return (
@@ -77,7 +78,7 @@ export default class CheckoutView extends React.Component<Props, State> {
                             </div>
 
                             <div style={cardStyle}>
-                            <Payment form={this.props.form} />
+                                <Payment form={this.props.form} />
                                 <br />
                             </div>
                             <div id="contain-all" style={{ textAlign: 'right', minWidth: '100%', padding: '2%' }}>
@@ -98,6 +99,7 @@ function confirmOrder() {
         window.location.reload(true);
     }
 }
+
 
 const checkoutStyle: React.CSSProperties = {
     display: "flex",

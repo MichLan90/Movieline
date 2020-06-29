@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Button, Card, Label, MenuItem, Menu, FormGroup, InputGroup, RadioGroup, Radio, Checkbox } from "@blueprintjs/core"
 import { CartConsumer, CartContextState } from '../context/cartContext'
-import { CheckOutConsumer, CheckOutContextState } from '../context/checkOutContext'
 import InfoForm from './checkout-components/FormInfo'
 import DeliveryMethod, { Delivery, deliveryAlternatives } from '../components/checkout-components/Delivery'
 import Payment from './checkout-components/Payment'
-
 
 interface Params {
     checkout: string

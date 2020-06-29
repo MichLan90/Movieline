@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom'
 import { render } from "@testing-library/react";
 import { Label, Button, Icon, Intent } from "@blueprintjs/core";
+import { CheckOutProvider, CheckOutConsumer, CheckOutContextState } from '../../context/checkOutContext'
+
+
 
 type FormData = {
   firstName: string;
@@ -22,13 +25,24 @@ export default function InfoForm() {
 
 
   const success = handleSubmit((values) => {
+
     const form = document.getElementById('msg')
     const name = values.firstName
     const email = values.email
     const phone = values.phone
     const adress = values.adress
+
     ReactDOM.render(
       <div>
+        <CheckOutProvider>
+          <CheckOutConsumer>
+            {(contextData: CheckOutContextState) => {
+              contextData.setInfoFormToTrue()
+              return (<div></div>)
+            }
+            }
+          </CheckOutConsumer>
+        </CheckOutProvider>
         <h2>Your Info</h2>
         <div style={{ textAlign: 'center' }}>
           <Icon icon="tick-circle" intent={Intent.SUCCESS} />
@@ -67,7 +81,7 @@ export default function InfoForm() {
         required: true,
         pattern: {
           value: /[a-z]\w+/,
-          message: "Please enter a valid name"
+          message: "Please enter a valid Email"
         }
       }) as any} /> <br />
       {errors.email && errMsg}
@@ -86,7 +100,7 @@ export default function InfoForm() {
         required: true,
         pattern: {
           value: /[a-z]\w+/,
-          message: "Please enter a valid name"
+          message: "Please enter a valid Address"
         }
       }) as any} /> <br />
       {errors.adress && errMsg}

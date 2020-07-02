@@ -10,7 +10,7 @@ export interface ProviderState {
     cartItems: CartItem[]
 }
 
-export interface ContextState extends ProviderState {
+export interface CartContextState extends ProviderState {
     addProductToCart: (product: Product) => void
     deletefromcart: (product: Product, index: number) => void
     countProductsInCart: () => void
@@ -18,7 +18,7 @@ export interface ContextState extends ProviderState {
     getVAT: () => number
 }
 
-export const CartContext = createContext<ContextState>({
+export const CartContext = createContext<CartContextState>({
     cartItems: [],
     addProductToCart: (product: Product) => {
         console.log(("Something went wrong with adding " + product.title + "to cart")

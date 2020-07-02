@@ -46,7 +46,7 @@ function CartView(props: Props) {
                                 </div>)
                         }
                         <h1 style={{textAlign: 'center', borderBottom: 'grey solid 1px'}}>{contextData.cartItems.length ? "Your current saldo: " + totalPrice : "Your current saldo: 0"} SEK</h1> 
-                        <div style={{textAlign: 'center'}}>Check your order. If everything is right than proceed to >> 
+                        <div style={{textAlign: 'center'}}>Check your order. If everything is right than proceed to {'>>'}
                         <Link to='/checkout/'>
                             <Button className="bp3-minimal"><b>CHECKOUT</b></Button>
                         </Link>

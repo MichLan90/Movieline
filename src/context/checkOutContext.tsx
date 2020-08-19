@@ -58,6 +58,9 @@ export class CheckOutProvider extends Component<{}, ProviderState> {
 
     setInfoFormToTrue = () => {
         if (this.state.validForm === false) {
+            console.log(this.state)
+
+            this.setState({ validForm: true }, () => { console.log(this.state) })
 
             this.setState({ validForm: true })
 
@@ -70,8 +73,9 @@ export class CheckOutProvider extends Component<{}, ProviderState> {
     setPaymentFormToTrue = () => {
 
         if (this.state.validPayment === false) {
+            console.log(this.state)
 
-            this.setState({ validPayment: true })
+            this.setState({ validPayment: true }, () => { console.log(this.state) })
 
             console.log("Payment is true now", "valid form is ",
                 this.state.validForm, "valid payment is ", this.state.validPayment)
